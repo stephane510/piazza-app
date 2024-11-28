@@ -2,6 +2,7 @@ const express = require ('express')
 const app = express ()
 
 const mongoose = require ('mongoose')
+require('dotenv/config')
 
 const bodyParser = require('body-parser')
 const postsRoute = require('./routes/posts')
@@ -13,9 +14,7 @@ app.get('/',(req,res)=>{
     res.send('homepage')
 })
 
-const MURL = 'mongodb+srv://student_steph16:V7spf6qvQE0p10Wy@cluster0.grukc.mongodb.net/piazza?retryWrites=true&w=majority&appName=Cluster0'
-
-mongoose.connect(MURL).then(()=>{
+mongoose.connect(process.env.DB_CONNECTOR).then(()=>{
     console.log('Your mongoDB connector is on...')
 })
 app.listen(3001,()=>{
