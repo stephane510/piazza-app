@@ -13,6 +13,11 @@ app.get('/',(req,res)=>{
     res.send('homepage')
 })
 
-app.listen(3000,()=>{
+const MURL = 'mongodb+srv://student_steph16:V7spf6qvQE0p10Wy@cluster0.grukc.mongodb.net/piazza?retryWrites=true&w=majority&appName=Cluster0'
+
+mongoose.connect(MURL).then(()=>{
+    console.log('Your mongoDB connector is on...')
+})
+app.listen(3001,()=>{
     console.log('Server is up and running...')
 })

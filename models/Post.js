@@ -47,4 +47,4 @@ const PostSChema = mongoose.Schema({
 
 })
 
-module.exports = mongoose.model('posts',PostSChema)
+module.exports = mongoose.model('Post', PostSChema)
