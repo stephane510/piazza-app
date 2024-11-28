@@ -1,33 +1,25 @@
-const mongoose = require ('mongoose')
+const mongoose = require('mongoose')
 
-const UserInteractionSChema = mongoose.Schema({
+const UserInteractionSchema = mongoose.Schema({
     "owner":{
         type:String,
         required:true
     },
-    "topic":{
+    "interaction value":{
         type:String,
-        enum: ['Politics', 'Health', 'Sport', 'Tech'],
+        enum: ['likes', 'dislikes', 'comments'],
         required:true
-    },    
-    "likes":{
-        type:Number, default:0
-    },
-    "dislikes":{
-        type:Number,default :0
-    },
-    "comments":{
-        type: String
     },
     "expirationTime":{
-        type:Date,
+        type:Number,
         required:true
-    }
+    },
+    'timestamp':{
+        type: Date,
+        default: Date.now 
+    }       
 })
 
 
+module.exports = mongoose.model('UserInteraction', UserInteractionSchema)
 
-
-
-
-module.exports = mongoose('userinteractions',UserInteractionsSChema)

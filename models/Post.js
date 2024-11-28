@@ -20,7 +20,7 @@ const PostSChema = mongoose.Schema({
         required:true
     },
     "expirationTime":{
-        type:Date,
+        type:Number,
         required:true
     },
     "status":{
