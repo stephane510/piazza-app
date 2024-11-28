@@ -10,8 +10,19 @@ const UserInteractionSChema = mongoose.Schema({
         enum: ['Politics', 'Health', 'Sport', 'Tech'],
         required:true
     },    
-
-
+    "likes":{
+        type:Number, default:0
+    },
+    "dislikes":{
+        type:Number,default :0
+    },
+    "comments":{
+        type: String
+    },
+    "expirationTime":{
+        type:Date,
+        required:true
+    }
 })
 
 
