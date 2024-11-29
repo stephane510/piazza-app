@@ -6,8 +6,10 @@ require('dotenv/config')
 
 const bodyParser = require('body-parser')
 const postsRoute = require('./routes/posts')
+const authRoute = require('./routes/auth')
 
 app.use(bodyParser.json())
+app.use('/user',authRoute)
 app.use('/posts',postsRoute)
 
 app.get('/',(req,res)=>{

@@ -45,6 +45,7 @@ const PostSChema = mongoose.Schema({
         type: String 
     }
 
+
 })
 
 module.exports = mongoose.model('Post', PostSChema)

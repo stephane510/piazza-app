@@ -10,14 +10,26 @@ const UserInteractionSchema = mongoose.Schema({
         enum: ['likes', 'dislikes', 'comments'],
         required:true
     },
-    "expirationTime":{
+    "currentExpirationTime":{
         type:Number,
         required:true
     },
     'timestamp':{
         type: Date,
         default: Date.now 
-    }       
+    },
+    "remainTimeExpiration":{
+        type:Number,
+        default: function() {
+        const now = new Date
+        const time = (now.getTime()-this.Post.postRegistration.getTime())/60000
+        const remainTime =  time - this.Post.expirationTime
+        if (remainTime>0){
+            return remainTime
+        }    
+        else return 0
+        }
+    }           
 })
 
 
