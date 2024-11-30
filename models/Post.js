@@ -39,7 +39,7 @@ const PostSChema = mongoose.Schema({
         type:Number,default :0
     },
     "comments":{
-        type: String
+        type: [String]
     },
     "furtherInformation":{
         type: String 

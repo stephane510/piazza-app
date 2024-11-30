@@ -7,10 +7,13 @@ require('dotenv/config')
 const bodyParser = require('body-parser')
 const postsRoute = require('./routes/posts')
 const authRoute = require('./routes/auth')
+const userInteractionRoute = require('./routes/userinteractions')
+
 
 app.use(bodyParser.json())
 app.use('/user',authRoute)
 app.use('/posts',postsRoute)
+app.use('/posts', userInteractionRoute)
 
 app.get('/',(req,res)=>{
     res.send('homepage')
