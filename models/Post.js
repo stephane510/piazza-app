@@ -43,9 +43,22 @@ const PostSChema = mongoose.Schema({
     },
     "furtherInformation":{
         type: String 
+    },
+    "remainTimeExpiration":{
+        type: Number 
     }
-
-
 })
+
+    
+//         PostSChema.virtual('remainTimeExpiration').get(function() {
+//         const now = new Date
+//         const time = (now.getTime()-this.postRegistration.getTime())/60000
+//         const remainTime =  time - this.expirationTime
+//         if (remainTime>0){
+//             return remainTime
+//         }    
+//         else return 0     
+// })
+
 
 module.exports = mongoose.model('Post', PostSChema)
