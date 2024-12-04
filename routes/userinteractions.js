@@ -3,9 +3,10 @@ const router = express.Router()
 
 const Interaction = require('../models/Interaction')
 const Post = require('../models/Post')
+const verify = require('../verifyToken')
 
 //patch function
-router.patch('/:postId/userinteractions', async (req, res) => {
+router.patch('/id/:postId/userinteractions', verify,async (req, res) => {
 
     const postId = req.params.postId
     const interactionValue = req.body.interactionValue
@@ -61,7 +62,7 @@ router.patch('/:postId/userinteractions', async (req, res) => {
 
 
 //get function
-router.get('/:postId/userinteractions', async(req,res)=>{
+router.get('/id/:postId/userinteractions',verify, async(req,res)=>{
     try{
         const interactionByPostId = await Post.findById(req.params.postId) 
         res.send(interactionByPostId)
