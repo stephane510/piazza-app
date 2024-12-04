@@ -46,19 +46,19 @@ const PostSChema = mongoose.Schema({
     },
     "remainTimeExpiration":{
         type: Number 
+    },
+    "totalInteractions": {
+        type: Number,
+        default: 0
     }
 })
 
     
-//         PostSChema.virtual('remainTimeExpiration').get(function() {
-//         const now = new Date
-//         const time = (now.getTime()-this.postRegistration.getTime())/60000
-//         const remainTime =  time - this.expirationTime
-//         if (remainTime>0){
-//             return remainTime
-//         }    
-//         else return 0     
-// })
+PostSChema.pre('save', function(next) {
+    this.totalInteractions = this.likes + this.dislikes;
+    next()
+})
+
 
 
 module.exports = mongoose.model('Post', PostSChema)
