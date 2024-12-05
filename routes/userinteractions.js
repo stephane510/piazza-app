@@ -10,6 +10,7 @@ router.patch('/id/:postId/userinteractions', verify,async (req, res) => {
 
     const postId = req.params.postId
     const interactionValue = req.body.interactionValue
+    const interactionowner = req.body.owner
     const interactionData = new Interaction({
         owner:req.body.owner,
         interactionValue:req.body.interactionValue,
@@ -26,7 +27,7 @@ router.patch('/id/:postId/userinteractions', verify,async (req, res) => {
     const remainingTime =  Math.max(post.expirationTime-time,0)
     post.remainTimeExpiration = remainingTime
     
-    if (remainingTime == 0 && post.status !== 'Expired'){
+    if (remainingTime == 0 && post.status !== 'Expired' ){
         post.status ='Expired'
     }
     else if (remainingTime > 0 && post.status !== 'Live'){
@@ -36,10 +37,14 @@ router.patch('/id/:postId/userinteractions', verify,async (req, res) => {
     if (post.status == 'Expired') {
         post.status ='Expired'
         post.remainTimeExpiration = 0
+    }    
+    else if (post.owner == interactionowner){
+        return res.send({message:'You cannot interact with your own post'})
     }
     else if (interactionValue == 'likes' && post.status == 'Live') {
         post.likes += 1
-    } else if (interactionValue == 'dislikes' && post.status == 'Live') {
+    } 
+    else if (interactionValue == 'dislikes' && post.status == 'Live') {
         post.dislikes += 1
     } 
     else if (interactionValue == 'comments' && post.status == 'Live') {
