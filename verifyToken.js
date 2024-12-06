@@ -1,4 +1,3 @@
-const {send} = require('express/Lib/response')
 const jsonwebtoken = require('jsonwebtoken')
 
 function auth (req,res,next){
